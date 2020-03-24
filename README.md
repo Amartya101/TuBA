@@ -1,6 +1,6 @@
-# Project Title
+# TuBA - Enhanced Version
 
-One Paragraph of project description goes here
+New version of TuBA that is able to analyze large graphs to identify biclusters (or communities) much faster than the older version.
 
 ## Getting Started
 
