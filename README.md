@@ -1,14 +1,14 @@
 # TuBA - Enhanced Version
 
-New version of TuBA that is able to analyze large graphs to identify biclusters (or communities) much faster than the older version.
+New version of TuBA - Analyzes large graphs to identify biclusters much faster than the older version.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+You will need an R version 3.4.0 or more recent in order to use these functions
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You need the data.table package
 
 ```
 Give examples
