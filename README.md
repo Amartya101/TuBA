@@ -77,9 +77,7 @@ This will generate the following output files: "*RPGenes_H0.05_JcdInd0.2_MinGene
 
 ## Authors
 
-* **Amartya Singh** - [TuBA](https://github.com/Amartya101/)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Amartya Singh** - [Amartya101](https://github.com/Amartya101/)
 
 ## License
 
@@ -87,6 +85,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Hossein Khiabanian [KhiabanianLab](https://github.com/KhiabanianLab/)
+* Gyan Bhanot
+* Lodovico Terzi
