@@ -8,10 +8,10 @@ You will need an R version 3.4.0 or more recent in order to use these functions
 
 ### Prerequisites
 
-You need the data.table package
+You need the data.table package. You can install it using the following command:
 
 ```
-Give examples
+install.packages(data.table,dependencies = T)
 ```
 
 ### Installing
