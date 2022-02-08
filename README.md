@@ -16,21 +16,18 @@ install.packages(data.table,dependencies = T)
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+The development version of TuBA2 can be installed using install_github from the **devtools** package (install_github is actually sourced from the **remotes** package which is also installed as one of the dependencies of **devtools**
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
+Install **devtools** using:
 
 ```
-until finished
+install.packages(devtools,dependencies = T)
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+```
+remotes::install_github("Amartya101/TuBA2")
+```
+
 
 ## Running the tests
 
