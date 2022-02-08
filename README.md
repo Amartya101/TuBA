@@ -77,7 +77,7 @@ This will generate the following output files: "*RPGenes_H0.05_JcdInd0.2_MinGene
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Amartya Singh** - [TuBA](https://github.com/Amartya101/)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
