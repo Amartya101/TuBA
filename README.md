@@ -43,15 +43,15 @@ Here is an example of a valid function call
 ```
 DataCleaning(File = "RPGenes.csv")
 ```
-This should generate an output file with the name "*RPGenes_Cleaned.csv*" in the current working directory.
+This should generate 2 output files with the names "*RPGenes_GeneNames.csv*" and "*RPGenes_Cleaned.csv*" in the current working directory.
 
 ### GenePairs
 
-The *GenePairs* function has 5 arguments - File, PercSetSize, JcdInd, highORlow, SampleEnrichment. *File* should be the name of the cleaned file produced by the *DataCleaning* function. PercSetSize requires an input in terms of percentage of the total number of samples that would constitute the extremals for each gene. For example, if you wish the percentile set size for comparison to be 10% you should specify this parameter to be 10. *JcdInd* specifies the Jaccard index cutoff that the overlap between the percentile sets must satisfy for a gene-pair to be a part of the graph. The input parameter *highORlow* specifies whether we want the percentile sets for each gene to correspond to samples with the highest expression levels ("h") or lowest expression levels ("l") respectively. The *SampleEnrichment* argument is a logical input (T or F) that specifies whether we wish for samples that are over-represented in percentile sets to be filtered out. By default it is kept F (Recommended). 
+The *GenePairs* function has 5 arguments - File, PercSetSize, JcdInd, highORlow, SampleEnrichment. *File* should be the name of the cleaned file produced by the *DataCleaning* function. PercSetSize requires an input in terms of percentage of the total number of samples that would constitute the extremals for each gene. For example, if you wish the percentile set size for comparison to be 10% you should specify this parameter to be 10. *JcdInd* specifies the Jaccard index cutoff that the overlap between the percentile sets must satisfy for a gene-pair to be a part of the graph. The input parameter *highORlow* specifies whether we want the percentile sets for each gene to correspond to samples with the highest expression levels ("h") or lowest expression levels ("l") respectively. The *SampleEnrichment* argument is a logical input that specifies whether we wish for samples that are over-represented in percentile sets to be filtered out (it does this if set to TRUE). By default it is kept FALSE (recommended). 
 
-The *GenePairs* function generates 2 output files. The first file contains all the gene-pairs that have significant overlaps between their percentile sets (Jaccard indices greater than *JcdInd* specified by the user). The name of this file ends with “_GenePairs.csv”. This file does not contain the full gene IDs or names, instead the genes are labelled by their serial number in input file. The second file contains a binary matrix with genes along the rows and samples along the columns. The first column contains the gene IDs or names obtained from the input file. For each gene (row), the presence of a sample in the percentile set is denoted by a 1, while samples not in the percentile set have 0. 
+The *GenePairs* function generates 2 output files. The first file contains all the gene-pairs that have significant overlaps between their percentile sets (Jaccard indices greater than *JcdInd* specified by the user). The name of this file ends with “_GenePairs.csv”. This file does not contain the full gene IDs or gene names, instead the genes are labelled by their serial number in the input file. The second file contains a binary matrix with genes along the rows and samples along the columns. The first column contains the gene IDs or names obtained from the input file. For each gene (row), the presence of a sample in the percentile set is denoted by a 1, while samples not in the percentile set have 0. 
 
-Examples of valid function calls are provided below (here we directly used *RPGenes.csv*, since it was already clean.)
+Examples of valid function calls are provided below (here we directly used *RPGenes.csv*, since it was already clean):
 ```
 # For high expression
 GenePairs(File = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "h")
@@ -61,6 +61,10 @@ GenePairs(File = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "l")
 The first one will generate the following 2 files: *RPGenes_H0.05_JcdInd0.2_GenePairs.csv* and *RPGenes_H0.05_JcdInd0.2_GeneSamplesBinaryMatrix.csv*. The notations in the middle of their names indicate the following: *H0.05* indicates that the gene-pairs were obtained for high expression ("H") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
 
 The second one will generate the following 2 files: *RPGenes_L0.05_JcdInd0.2_GenePairs.csv* and *RPGenes_L0.05_JcdInd0.2_GeneSamplesBinaryMatrix.csv*. The notations in the middle of their names indicate the following: *L0.05* indicates that the gene-pairs were obtained for low expression ("L") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
+
+### Biclustering
+
+
 
 ## Deployment
 
