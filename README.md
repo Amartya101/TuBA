@@ -58,9 +58,9 @@ GenePairs(File = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "h")
 # For high expression
 GenePairs(File = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "l")
 ```
-The first one will generate the following 2 files: "*RPGenes_H0.05_JcdInd0.2_GenePairs.csv*" and "*RPGenes_H0.05_JcdInd0.2_GeneSamplesBinaryMatrix.csv*". The notations in the middle of their names indicate the following: *H0.05* indicates that the gene-pairs were obtained for high expression ("H") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
+The first one will generate the following 2 files: "*RPGenes_H0.05_JcdInd0.2_GenePairs.csv*" and "*RPGenes_H0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv*". The notations in the middle of their names indicate the following: *H0.05* indicates that the gene-pairs were obtained for high expression ("H") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
 
-The second one will generate the following 2 files: "*RPGenes_L0.05_JcdInd0.2_GenePairs.csv*" and "*RPGenes_L0.05_JcdInd0.2_GeneSamplesBinaryMatrix.csv*". The annotations in the middle of their names indicate the following: *L0.05* indicates that the gene-pairs were obtained for low expression ("L") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
+The second one will generate the following 2 files: "*RPGenes_L0.05_JcdInd0.2_GenePairs.csv*" and "*RPGenes_L0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv*". The annotations in the middle of their names indicate the following: *L0.05* indicates that the gene-pairs were obtained for low expression ("L") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
 
 ### Biclustering
 
