@@ -73,25 +73,7 @@ Example of a valid function call is provided below:
 # For high expression
 Biclustering(VariablePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",BinaryMatrix = "RPGenes_H0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv")
 ```
-This will generate the following output files: "*RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_GenesInBiclusters.csv*", "RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_BiclusterSamplesMatrix.csv*", and "RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_GenesBiclusterSamplesMatrix.csv*". The additional annotations in the middle of their names indicate the following: *MinGenesX* indicates that the smallest bicluster contained *X* genes (for the example with default choices above, X will be 3), and *MinSamples* indicates the number of samples contained in the bicluster that has the fewest samples.
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+This will generate the following output files: "*RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_GenesInBiclusters.csv*", "*RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_BiclusterSamplesMatrix.csv*", and "*RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_GenesBiclusterSamplesMatrix.csv*". The additional annotations in the middle of their names indicate the following: *MinGenesX* indicates that the smallest bicluster contained *X* genes (for the example with default choices above, X will be 3), and *MinSamples* indicates the number of samples contained in the bicluster that has the fewest samples.
 
 ## Authors
 
