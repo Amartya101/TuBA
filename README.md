@@ -1,4 +1,4 @@
-# TuBA - Enhanced Version
+# TuBA
 
 New version of TuBA - Analyzes large graphs to identify biclusters much faster than the older version.
 
@@ -8,30 +8,30 @@ You will need an R version 3.4.0 or more recent in order to use these functions
 
 ### Prerequisites
 
-You need the data.table package. You can install it using the following command:
+You need the **data.table** package. You can install it using the following command:
 
 ```
-install.packages(data.table,dependencies = T)
+install.packages("data.table",dependencies = T)
 ```
 
 ### Installing
 
-The development version of TuBA2 can be installed using install_github from the **devtools** package (install_github is actually sourced from the **remotes** package which is also installed as one of the dependencies of **devtools**
+Currently, the development version of **TuBA** can be installed using *install_github* from the **devtools** package.
 
 Install **devtools** using:
 
 ```
-install.packages(devtools,dependencies = T)
+install.packages("devtools",dependencies = T)
+```
+Once **devtools** is installed
+```
+devtools::install_github("Amartya101/TuBA2")
 ```
 
-```
-remotes::install_github("Amartya101/TuBA2")
-```
 
+## Instructions for using TuBA
 
-## Running the tests
-
-Explain how to run the automated tests for this system
+There are 3 functions in TuBA, which need to be employed in a sequential manner on the data set of interest. Make sure that before running the first function (*DataCleaning*) that the data exists in a tabular format in either a .csv or a .txt file, which the genes (or more generally, features) are along the rows and the samples are along the columns. The first column in the file must contain the IDs or names of the genes (no duplicates allowed). We have included an example file with RP genes in the repository (*RPGenes.csv*). 
 
 ### Break down into end to end tests
 
