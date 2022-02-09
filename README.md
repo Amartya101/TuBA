@@ -1,6 +1,6 @@
 # TuBA
 
-New version of TuBA - Analyzes large graphs to identify biclusters much faster than the older version.
+New version of TuBA - Analyzes large graphs to identify biclusters much faster than the [older version](https://github.com/Amartya101/TuBA-Older_Slower).
 
 ## Getting Started
 
@@ -36,7 +36,7 @@ There are 3 functions in TuBA, which need to be employed in a sequential manner 
 The descriptions of the functions and instructions on how to use them are provided below:
 
 ### DataCleaning
-The *DataCleaning* function requires one input - *File*. The name of the input file (.txt or .csv) should be specified in full including the specifier for the format of the file. It is expected that the dataset in the input file is in the rectangular format, with genes along rows (first column should contain all the gene names) and samples along the columns (the header should contain the sample IDs). It should contain normalized counts and should be processed by the user to remove duplicate genes, NAs etc. The *DataCleaning* function evaluates if there are genes in the dataset that do not have a single non-zero expression value in any sample and removes these genes. It renames the header of the first column as Gene.ID and generates the output file in .csv format with the name of the input file appended by "*_Cleaned.csv*". It also generates a file that contains the names of all the genes that have non-zero expression levels in some of the samples. The name of this file ends with "*_GeneNames.csv*".
+The *DataCleaning* function requires one input - *File*. *File* should be the full name of the input file including the specifier for the format of the file (.csv or .txt). It is expected that the dataset in the input file is in the rectangular format, with genes along rows (first column should contain all the gene names) and samples along the columns (the header should contain the sample IDs). It should contain normalized counts and should be processed by the user to remove duplicate genes, NAs etc. The *DataCleaning* function evaluates if there are genes in the dataset that do not have a single non-zero expression value in any sample and removes these genes. It renames the header of the first column as Gene.ID and generates the output file in .csv format with the name of the input file appended by "*_Cleaned.csv*". It also generates a file that contains the names of all the genes that have non-zero expression levels in some of the samples. The name of this file ends with "*_GeneNames.csv*".
 
 Here is an example of a valid function call
 
