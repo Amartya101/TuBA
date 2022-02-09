@@ -1,6 +1,6 @@
 # TuBA
 
-New version of TuBA - Analyzes large graphs to identify biclusters much faster than the [older version](https://github.com/Amartya101/TuBA-Older_Slower).
+New version of TuBA - Analyzes large graphs to identify biclusters much faster than the [older version](https://github.com/Amartya101/TuBA-Older_Slower). 
 
 ## Getting Started
 
