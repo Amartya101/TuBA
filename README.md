@@ -84,6 +84,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hossein Khiabanian [KhiabanianLab](https://github.com/KhiabanianLab/)
+* Hossein Khiabanian - [KhiabanianLab](https://github.com/KhiabanianLab/)
 * Gyan Bhanot
 * Lodovico Terzi di Bergamo
