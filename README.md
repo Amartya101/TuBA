@@ -1,6 +1,6 @@
 # TuBA
 
-New R package of TuBA - Analyzes large graphs to identify biclusters much faster than the [older version](https://github.com/Amartya101/TuBA-Older_Slower). 
+New R package of TuBA - Analyzes large graphs to identify biclusters much faster than the [older version](https://github.com/Amartya101/TuBA-Original_Slower). 
 
 ## Getting Started
 
