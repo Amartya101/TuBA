@@ -36,31 +36,31 @@ There are 3 functions in TuBA, which need to be employed in a sequential manner 
 The descriptions of the functions and instructions on how to use them are provided below:
 
 ### DataCleaning
-The *DataCleaning* function requires one input - *File*. *File* should be the full name of the input file including the specifier for the format of the file (.csv or .txt). It is expected that the dataset in the input file is in the rectangular format, with genes along rows (first column should contain all the gene names) and samples along the columns (the header should contain the sample IDs). It should contain normalized counts and should be processed by the user to remove duplicate genes, NAs etc. The *DataCleaning* function evaluates if there are genes in the dataset that do not have a single non-zero expression value in any sample and removes these genes. It renames the header of the first column as Gene.ID and generates the output file in .csv format with the name of the input file appended by "*_Cleaned.csv*". It also generates a file that contains the names of all the genes that have non-zero expression levels in some of the samples. The name of this file ends with "*_GeneNames.csv*".
+The *DataCleaning* function requires one input - *File*. *File* should be the full name of the input file including the specifier for the format of the file (.csv or .txt). It is expected that the dataset in the input file is in the rectangular format, with genes along rows (first column should contain all the gene names) and samples along the columns (the header should contain the sample IDs). It should contain normalized counts and should be processed by the user to remove duplicate genes, NAs etc. The *DataCleaning* function evaluates if there are genes in the dataset that do not have a single non-zero expression value in any sample and removes these genes. It renames the header of the first column as Gene.ID and generates the output file in .csv format with the name of the input file appended by "*_Cleaned.csv*".
 
 Here is an example of a valid function call
 
 ```
 DataCleaning(File = "RPGenes.csv")
 ```
-This should generate 2 output files with the names "*RPGenes_GeneNames.csv*" and "*RPGenes_Cleaned.csv*" in the current working directory.
+This will produce an output file with the name "*RPGenes_Cleaned.csv*" in the current working directory.
 
 ### GenePairs
 
 The *GenePairs* function has 5 arguments - *File*, *PercSetSize*, *JcdInd*, *highORlow*, *SampleEnrichment*. *File* should be the name of the cleaned file produced by the *DataCleaning* function. *PercSetSize* requires an input in terms of percentage of the total number of samples that would constitute the extremals for each gene. For example, if you wish to look at the top 10% you should specify this parameter to be 10 (and *highRlow = "h"*, more below). *JcdInd* specifies the Jaccard index cutoff that the overlap between the percentile sets must satisfy for a gene-pair to be a part of the graph. The parameter *highORlow* specifies whether we want the percentile sets for each gene to correspond to samples with the highest expression levels ("h") or lowest expression levels ("l") respectively. The *SampleEnrichment* argument is a logical input that specifies whether we wish for samples that are over-represented in percentile sets to be filtered out (it does this if set to TRUE). By default it is set to FALSE (recommended). 
 
-The *GenePairs* function generates 2 output files. The first file contains all the gene-pairs that have significant overlaps between their percentile sets (Jaccard indices greater than *JcdInd* specified by the user). The name of this file ends with "*_GenePairs.csv*". This file does not contain the full gene IDs or gene names, instead the genes are labelled by their serial number in the input file. The second file contains a binary matrix with genes along the rows and samples along the columns. The first column contains the gene IDs or gene names obtained from the input file. For each gene (row), the presence of a sample in the percentile set is denoted by a 1, while samples not in the percentile set have 0. 
+The *GenePairs* function generates 3 output files. The first file contains all the gene-pairs that have significant overlaps between their percentile sets (Jaccard indices greater than *JcdInd* specified by the user). The name of this file ends with "*_GenePairs.csv*". This file does not contain the full gene IDs or gene names, instead the genes are labelled by their serial number in the input file. The second file contains a binary matrix with genes along the rows and samples along the columns. The first column contains the gene IDs or gene names obtained from the input file. For each gene (row), the presence of a sample in the percentile set is denoted by a 1, while samples not in the percentile set have 0. The third file this function generates contains the names/IDs of the genes in the data set. The name of this file ends with "*_GeneNames.csv*".
 
-Examples of valid function calls are provided below (here we directly used *RPGenes.csv*, since it was already clean):
+Examples of valid function calls are provided below (here we directly used "*RPGenes.csv*", since it was already clean):
 ```
 # For high expression
 GenePairs(File = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "h")
 # For low expression
 GenePairs(File = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "l")
 ```
-The first one will generate the following 2 files: "*RPGenes_H0.05_JcdInd0.2_GenePairs.csv*" and "*RPGenes_H0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv*". The notations in the middle of their names indicate the following: *H0.05* indicates that the gene-pairs were obtained for high expression ("H") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
+The first one will generate the following 3 files: "*RPGenes_H0.05_JcdInd0.2_GenePairs.csv*", "*RPGenes_H0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv*", and "*RPGenes_H0.05_JcdInd0.2_GeneNames.csv*". The annotations in the middle of their names indicate the following: *H0.05* indicates that the gene-pairs were obtained for high expression ("H") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
 
-The second one will generate the following 2 files: "*RPGenes_L0.05_JcdInd0.2_GenePairs.csv*" and "*RPGenes_L0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv*". The annotations in the middle of their names indicate the following: *L0.05* indicates that the gene-pairs were obtained for low expression ("L") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
+The second one will generate the following 3 files: "*RPGenes_L0.05_JcdInd0.2_GenePairs.csv*", "*RPGenes_L0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv*", and "*RPGenes_L0.05_JcdInd0.2_GeneNames.csv*". The annotations in the middle of their names indicate the following: *L0.05* indicates that the gene-pairs were obtained for low expression ("L") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
 
 ### Biclustering
 
@@ -73,6 +73,15 @@ Example of a valid function call is provided below:
 Biclustering(VariablePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",BinaryMatrix = "RPGenes_H0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv")
 ```
 This will generate the following output files: "*RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_GenesInBiclusters.csv*", "*RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_BiclusterSamplesMatrix.csv*", and "*RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_GenesBiclusterSamplesMatrix.csv*". The additional annotations in the middle of their names indicate the following: *MinGenesX* indicates the number of genes in the bicluster with the fewest genes (for the example with default choices above, *X* will be 3), and *MinSamplesY* indicates the number of samples (*Y*) in the bicluster that has the fewest samples.
+
+### Bicluster Genes Graphs
+This function can be used to make the graphs/networks to show the genes in the biclusters found by the *Biclustering* function. The *BiclusterGenesGraph* function has 4 input arguments - *BiclusterGenes*, *GenePairs*, *GeneNames*, and *BiclusterNos*. *BiclusterGenes* specifies the name of the "*.._GenesInBicluster.csv*" file produced by the *Biclustering* function for given data set. *GenePairs* specifies the name of the "*.._GenePairs.csv*" produced by the *GenePairs* function for given data set, while *GeneNames* specifies the name of the "*.._GeneNames.csv*" produced by the *GenePairs* function for given data set. The *BiclusterNos* argument can take in a vector of serial numbers for the respective biclusters for which the graphs/networks are desired.
+
+Example of a valid function call is provided below:
+```
+BiclusterGeneGraphs(BiclusterGenes = "RPGenes_H0.05_JcdInd0.2_GenesInBiclusters.csv",GenePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",GeneNames = "RPGenes_H0.05_JcdInd0.2_GeneNames.csv",BiclusterNos = c(1,2))
+```
+
 
 ## Authors
 
