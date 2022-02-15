@@ -81,7 +81,7 @@ Example of a valid function call is provided below:
 ```
 BiclusterGeneGraphs(BiclusterGenes = "RPGenes_H0.05_JcdInd0.2_GenesInBiclusters.csv",GenePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",GeneNames = "RPGenes_H0.05_JcdInd0.2_GeneNames.csv",BiclusterNos = c(1,2))
 ```
-
+This will produce following .pdf files - "*RPGenes_H0.05_JcdInd0.2_Bicluster1.pdf*" and "*RPGenes_H0.05_JcdInd0.2_Bicluster2.pdf*" - containing the graphs for the respective biclusters.
 
 ## Authors
 
