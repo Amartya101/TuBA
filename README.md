@@ -13,6 +13,12 @@ You need the **data.table** package. You can install it using the following comm
 ```
 install.packages("data.table",dependencies = T)
 ```
+In order to make the bicluster gene graphs, we also need the following packages - **ggplot2**, **network**, **ggnetwork**. They can be installed using:
+```
+install.packages("ggplot2",dependencies = T)
+install.packages("network",dependencies = T)
+install.packages("ggnetwork",dependencies = T)
+```
 
 ### Installing
 
