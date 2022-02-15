@@ -10,7 +10,7 @@ DataCleaning(File)
 \item{File}{A character variable. Specifies the name of the .csv or .txt file that contains the gene expression data. Make sure it is in the genes along rows and samples along columns format.}
 }
 \value{
-A data frame containing the gene expression data after basic cleaning. In addition, it generates two .csv files in the working directory - one contains the names of the genes in the cleaned gene expression data set, and the other contains the entire gene expression data after cleaning.
+A data frame containing the gene expression data after basic cleaning. In addition, it generates a .csv file in the working directory that contains the cleaned gene expression data set.
 }
 \description{
 This function performs basic cleaning of gene expression data sets - removes genes with zero counts across all samples as well as genes with NAs in some samples.

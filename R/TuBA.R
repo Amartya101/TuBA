@@ -8,15 +8,19 @@
 #   Build and Reload Package:  'Cmd + Shift + B'
 #   Check Package:             'Cmd + Shift + E'
 #   Test Package:              'Cmd + Shift + T'
-
+utils::globalVariables(c("."))
 #' @import utils
 #' @import stats
+#' @import ggplot2
+#' @import network
+#' @importFrom ggplot2 aes
+#' @import ggnetwork
 
 #' @title  DataCleaning
 #' @description  This function performs basic cleaning of gene expression data sets - removes genes with zero counts across all samples as well as genes with NAs in some samples.
 #' @export
 #' @param File A character variable. Specifies the name of the .csv or .txt file that contains the gene expression data. Make sure it is in the genes along rows and samples along columns format.
-#' @return A data frame containing the gene expression data after basic cleaning. In addition, it generates two .csv files in the working directory - one contains the names of the genes in the cleaned gene expression data set, and the other contains the entire gene expression data after cleaning.
+#' @return A data frame containing the gene expression data after basic cleaning. In addition, it generates a .csv file in the working directory that contains the cleaned gene expression data set.
 #' @examples
 #' \dontrun{
 #' DataCleaning(File = "RPGenes.csv")
@@ -58,7 +62,8 @@ DataCleaning <- function(File)
 #' @param JcdInd A numeric variable. Specifies the minimum Jaccard Index for the overlap between the percentile sets of a given gene-pair.
 #' @param highORlow A character variable. Specifies whether the percentile sets correspond to the highest expression samples ("h") or the lowest expression samples ("l").
 #' @param SampleFilter A logical variable. If TRUE, filters out samples over-represented in percentile sets. Default is FALSE.
-#' @return A data frame containing the gene-pairs whose Jaccard indices are greater than the specified threshold (JcdInd). Instead of gene symbols their serial numbers in the input gene expression file are used in order to save space. In addition, this function generates 2 .csv files in the working directory - one contains the gene-pairs and their Jaccard indices, while the other contains the binary matrix (genes along rows, samples along columns) in which the presence of a sample in the percentile set of each gene is indicated by a 1. These 2 files are needed as inputs for the \link[TuBA]{Biclustering} function.
+#' @return A data frame containing the gene-pairs whose Jaccard indices are greater than the specified threshold (JcdInd). Instead of gene symbols their serial numbers in the input gene expression file are used in order to save space. In addition, this function generates 3 .csv files in the working directory - one contains the gene-pairs and their Jaccard indices, the second contains the binary matrix (genes along rows, samples along columns) in which the presence of a sample in the percentile set of each gene is indicated by a 1. These 2 files are needed as inputs for the \link[TuBA]{Biclustering} function.
+#' The third .csv file contains the IDs or names of the genes corresponding to the numbered indices used in the gene-pairs file.
 #' @examples
 #' \dontrun{
 #' # For high expression
@@ -170,6 +175,11 @@ GenePairs <- function(File,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
 
     write.table(Genes.Samples.Binary.df,file = File.Name,row.names = F,col.names = T,sep = ",")
 
+    Name.EndStr <- substr(File,nchar(File)-3,nchar(File))
+    File.Name <- as.character(paste(gsub(Name.EndStr,"",File),"_H",as.character(CutOffPerc),"_JcdInd",JcdInd,"_GeneNames.csv",sep = ""))
+    GeneNames.df <- data.frame(Gene.ID = Genes.Samples.Binary.df$Gene.ID)
+    write.table(GeneNames.df,file = File.Name,row.names = F,col.names = T,sep = ",")
+
     rm(Genes.Samples.Binary.df)
 
     #Outlier overlaps matrix
@@ -274,6 +284,11 @@ GenePairs <- function(File,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
     File.Name <- as.character(paste(gsub(".csv","",File),"_L",as.character(CutOffPerc),"_JcdInd",JcdInd,"_GenesSamples_BinaryMatrix.csv",sep = ""))
 
     write.table(Genes.Samples.Binary.df,file = File.Name,row.names = F,col.names = T,sep = ",")
+
+    Name.EndStr <- substr(File,nchar(File)-3,nchar(File))
+    File.Name <- as.character(paste(gsub(Name.EndStr,"",File),"_L",as.character(CutOffPerc),"_JcdInd",JcdInd,"_GeneNames.csv",sep = ""))
+    GeneNames.df <- data.frame(Gene.ID = Genes.Samples.Binary.df$Gene.ID)
+    write.table(GeneNames.df,file = File.Name,row.names = F,col.names = T,sep = ",")
 
     rm(Genes.Samples.Binary.df)
 
@@ -721,7 +736,7 @@ Biclustering <- function(VariablePairs,BinaryMatrix,MinGenes = NULL,MinSamples =
     Nodes.Biclusters.Info.df$Samples.Per.Gene.In.Bicluster <- No.of.Samples.Per.Gene.In.Bicluster
     Nodes.Biclusters.Info.df$Proportion.of.Samples <- Proportion.of.Samples.In.Bicluster
 
-    File.Name <- paste0(substr(VariablePairs,1,nchar(VariablePairs)-24),"_MinGenes",MinBiclusterGenes,"_MinSamples",MinBiclusterSamples,"_GenesInBiclusters.csv")
+    File.Name <- paste0(substr(VariablePairs,1,nchar(VariablePairs)-13),"MinGenes",MinBiclusterGenes,"_MinSamples",MinBiclusterSamples,"_GenesInBiclusters.csv")
 
     write.table(Nodes.Biclusters.Info.df,file = File.Name,row.names = F,col.names = T,sep = ",")
 
@@ -730,7 +745,7 @@ Biclustering <- function(VariablePairs,BinaryMatrix,MinGenes = NULL,MinSamples =
     Bicluster.Samples.df <- data.frame(paste0("Bicluster.",1:length(Nodes.In.Final.Biclusters)),Bicluster.Samples.Matrix.Eligible)
     colnames(Bicluster.Samples.df) <- c("Bicluster.No",colnames(Binary.Matrix.For.Variables.Outliers))
 
-    File.Name <- paste0(substr(VariablePairs,1,nchar(VariablePairs)-24),"_MinGenes",MinBiclusterGenes,"_MinSamples",MinBiclusterSamples,"_BiclusterSamplesMatrix.csv")
+    File.Name <- paste0(substr(VariablePairs,1,nchar(VariablePairs)-13),"MinGenes",MinBiclusterGenes,"_MinSamples",MinBiclusterSamples,"_BiclusterSamplesMatrix.csv")
 
     write.table(Bicluster.Samples.df,file = File.Name,row.names = F,col.names = T,sep = ",")
 
@@ -740,7 +755,7 @@ Biclustering <- function(VariablePairs,BinaryMatrix,MinGenes = NULL,MinSamples =
     Genes.Bicluster.Samples.df <- data.frame(Nodes.Biclusters.Info.df$Gene.ID,Nodes.Biclusters.Info.df$Bicluster.No,Genes.Bicluster.Samples.Matrix)
     colnames(Genes.Bicluster.Samples.df) <- c("Gene.ID","Bicluster.No",colnames(Binary.Matrix.For.Variables.Outliers))
 
-    File.Name <- paste0(substr(VariablePairs,1,nchar(VariablePairs)-24),"_MinGenes",MinBiclusterGenes,"_MinSamples",MinBiclusterSamples,"_GenesBiclusterSamplesMatrix.csv")
+    File.Name <- paste0(substr(VariablePairs,1,nchar(VariablePairs)-13),"MinGenes",MinBiclusterGenes,"_MinSamples",MinBiclusterSamples,"_GenesBiclusterSamplesMatrix.csv")
 
     write.table(Genes.Bicluster.Samples.df,file = File.Name,row.names = F,col.names = T,sep = ",")
 
@@ -751,5 +766,130 @@ Biclustering <- function(VariablePairs,BinaryMatrix,MinGenes = NULL,MinSamples =
   return(Nodes.Biclusters.Info.df)
 }
 
+#' @title  Bicluster Genes Graph Function
+#' @description  This function can be used to make graphs/networks containing the genes in the biclusters found by the \link[TuBA]{Biclustering} function.
+#' @export
+#' @param BiclusterGenes A character variable. Specifies the name of the .csv file containing the lists of genes in the biclusters generated by the \link[TuBA]{Biclustering} function.
+#' @param GenePairs A character variable. Specifies the name of the genes-pairs .csv file generated by the \link[TuBA]{GenePairs} function.
+#' @param GeneNames A character variable. Specifies the name of the .csv file containing the gene names/IDs generated by the \link[TuBA]{GenePairs} function.
+#' @param BiclusterNos A numeric vector. Specifies the serial numbers of the biclusters for which the bicluster graphs/networks are desired.
+#' @return Generates .pdf files containing the graphs/networks of genes corresponding to the biclusters specified by the user.
+#' @examples
+#' \dontrun{
+#' BiclusterGenesGraph(BiclusterGenes = "RPGenes_H0.05_JcdInd0.2_GenesInBiclusters.csv",GenePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",GeneNames = "RPGenes_H0.05_JcdInd0.2_GeneNames.csv",BiclusterNos = c(1,2))
+#' }
 
+BiclusterGenesGraph <- function(BiclusterGenes,GenePairs,GeneNames,BiclusterNos)
+{
+  if(BiclusterGenes == ""){
+    stop("Please specify the name of the .csv file containing the lists of genes in biclusters.")
+  }
 
+  if(GenePairs == ""){
+    stop("Please specify the name of the .csv file containing the gene-pairs.")
+  }
+
+  if(GeneNames == ""){
+    stop("Please specify the name of the .csv file containing the names/IDs of the genes.")
+  }
+
+  if(length(BiclusterNos) == 0 | length(which(BiclusterNos <= 0) != 0)){
+    stop("Bicluster serial number(s) must be specified, and should be present in the bicluster results.")
+  }
+
+  #Import bicluster genes result
+  BiclusterGenes.df <- data.table::fread(BiclusterGenes)
+
+  #Import gene-pairs file
+  GenePairs.df <- data.table::fread(GenePairs)
+
+  #Import gene names
+  GeneNames.Vec <- data.table::fread(GeneNames)$Gene.ID
+
+  #Replace serial numbers with corresponding gene names
+  GenePairs.df$Gene.1 <- GeneNames.Vec[GenePairs.df$Gene.1]
+  GenePairs.df$Gene.2 <- GeneNames.Vec[GenePairs.df$Gene.2]
+
+  #Make graphs for the bicluster serial numbers provided by user
+
+  for (i in 1:length(BiclusterNos))
+  {
+    TempI <- BiclusterNos[i]
+    BiclusterGenes <- BiclusterGenes.df$Gene.ID[BiclusterGenes.df$Bicluster.No == TempI]
+
+    Col1.Edgelist <- as.character(GenePairs.df$Gene.1[GenePairs.df$Gene.1 %in% BiclusterGenes & GenePairs.df$Gene.2 %in% BiclusterGenes])
+    Col2.Edgelist <- as.character(GenePairs.df$Gene.2[GenePairs.df$Gene.1 %in% BiclusterGenes & GenePairs.df$Gene.2 %in% BiclusterGenes])
+
+    Bicluster.Edgelist <- cbind(Col1.Edgelist,Col2.Edgelist)
+
+    n <- network::network(Bicluster.Edgelist,directed = F)
+
+    n <- ggnetwork::ggnetwork(n, layout = "fruchtermanreingold", cell.jitter = 0.75)
+
+    FileName <- paste0(substr(GeneNames,1,nchar(GeneNames)-13),"Bicluster",TempI,".pdf")
+
+    x <- y <- xend <- yend <- vertex.names <- NULL
+
+    if (length(BiclusterGenes) < 50){
+      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+        ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
+        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(aes(label = vertex.names),
+                                 fontface = "bold") +
+        ggnetwork::theme_blank() +
+        ggplot2::theme(legend.position = "none")
+      ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 10,height = 10,units = "in")
+    } else if (length(BiclusterGenes) >= 50 & length(BiclusterGenes) < 100){
+      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+        ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
+        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(aes(label = vertex.names),
+                                 fontface = "bold") +
+        ggnetwork::theme_blank() +
+        ggplot2::theme(legend.position = "none")
+      ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 12,height = 12,units = "in")
+    } else if (length(BiclusterGenes) >= 100 & length(BiclusterGenes) < 150){
+      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+        ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
+        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(aes(label = vertex.names),
+                                 fontface = "bold") +
+        ggnetwork::theme_blank() +
+        ggplot2::theme(legend.position = "none")
+      ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 14,height = 14,units = "in")
+    } else if (length(BiclusterGenes) >= 150 & length(BiclusterGenes) < 200){
+      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+        ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
+        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(aes(label = vertex.names),
+                                 fontface = "bold") +
+        ggnetwork::theme_blank() +
+        ggplot2::theme(legend.position = "none")
+      ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 16,height = 16,units = "in")
+    } else if (length(BiclusterGenes) >= 200 & length(BiclusterGenes) < 250){
+      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+        ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
+        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(aes(label = vertex.names),
+                                 fontface = "bold") +
+        ggnetwork::theme_blank() +
+        ggplot2::theme(legend.position = "none")
+      ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 18,height = 18,units = "in")
+    } else if(length(BiclusterGenes) >= 250){
+      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+        ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
+        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(aes(label = vertex.names),
+                                 fontface = "bold") +
+        ggnetwork::theme_blank() +
+        ggplot2::theme(legend.position = "none")
+      ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 20,height = 20,units = "in")
+    }
+  }
+}

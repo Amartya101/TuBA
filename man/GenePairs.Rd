@@ -18,7 +18,8 @@ GenePairs(File, PercSetSize, JcdInd, highORlow, SampleFilter = NULL)
 \item{SampleFilter}{A logical variable. If TRUE, filters out samples over-represented in percentile sets. Default is FALSE.}
 }
 \value{
-A data frame containing the gene-pairs whose Jaccard indices are greater than the specified threshold (JcdInd). Instead of gene symbols their serial numbers in the input gene expression file are used in order to save space. In addition, this function generates 2 .csv files in the working directory - one contains the gene-pairs and their Jaccard indices, while the other contains the binary matrix (genes along rows, samples along columns) in which the presence of a sample in the percentile set of each gene is indicated by a 1. These 2 files are needed as inputs for the \link[TuBA]{Biclustering} function.
+A data frame containing the gene-pairs whose Jaccard indices are greater than the specified threshold (JcdInd). Instead of gene symbols their serial numbers in the input gene expression file are used in order to save space. In addition, this function generates 3 .csv files in the working directory - one contains the gene-pairs and their Jaccard indices, the second contains the binary matrix (genes along rows, samples along columns) in which the presence of a sample in the percentile set of each gene is indicated by a 1. These 2 files are needed as inputs for the \link[TuBA]{Biclustering} function.
+The third .csv file contains the IDs or names of the genes corresponding to the numbered indices used in the gene-pairs file.
 }
 \description{
 This function finds gene-pairs that share more than a specified proportion of samples between their percentile sets.
