@@ -77,7 +77,7 @@ The *Biclustering* function has 5 arguments of which 2 inputs are necessary - *G
 
 Example of a valid function call is provided below:
 ```
-Biclustering(GenePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",BinaryMatrix = "RPGenes_H0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv")
+Biclustering(GenePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",BinaryMatrix = "RPGenes_H0.05_JcdInd0.2_GenesSamplesBinaryMatrix.csv")
 ```
 This will generate the following output files: "*RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_GenesInBiclusters.csv*", "*RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_BiclusterSamplesMatrix.csv*", and "*RPGenes_H0.05_JcdInd0.2_MinGenesX_MinSamplesY_GenesBiclusterSamplesMatrix.csv*". The additional annotations in the middle of their names indicate the following: *MinGenesX* indicates the number of genes in the bicluster with the fewest genes (for the example with default choices above, *X* will be 3), and *MinSamplesY* indicates the number of samples (*Y*) in the bicluster that has the fewest samples.
 
