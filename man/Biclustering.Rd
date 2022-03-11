@@ -31,6 +31,6 @@ This function finds the biclusters using the graph (gene-pairs file) and the gen
 }
 \examples{
 \dontrun{
-Biclustering(GenePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",BinaryMatrix = "RPGenes_H0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv")
+Biclustering(GenePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",BinaryMatrix = "RPGenes_H0.05_JcdInd0.2_GenesSamplesBinaryMatrix.csv")
 }
 }

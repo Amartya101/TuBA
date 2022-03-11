@@ -453,7 +453,7 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
 #' @return A data frame containing the sets of genes in the biclusters along with the information about the number of samples in each bicluster. In addition, it generates 3 .csv files - one contains the list of genes in each bicluster along with information about the total number of samples in the bicluster and how many of them are contributed by each gene within the bicluster; the other contains the bicluster-samples binary matrix (biclusters along rows, samples along columns) in which the presence of a sample within a bicluster is indicated by a 1; the third file contains the genes-biclusters-samples matrix (genes along rows, samples along columns) which contains more detailed information about which sample is present for which gene within a given bicluster. The first column in this genes-biclusters-samples file contains the names of genes in the bicluster, and the second column contains the serial numbers of the biclusters which contains these genes; the rest of the file contains the binary matrix.
 #' @examples
 #' \dontrun{
-#' Biclustering(GenePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",BinaryMatrix = "RPGenes_H0.05_JcdInd0.2_GenesSamples_BinaryMatrix.csv")
+#' Biclustering(GenePairs = "RPGenes_H0.05_JcdInd0.2_GenePairs.csv",BinaryMatrix = "RPGenes_H0.05_JcdInd0.2_GenesSamplesBinaryMatrix.csv")
 #' }
 Biclustering <- function(GenePairs,BinaryMatrix,MinGenes = NULL,MinSamples = NULL,SampleEnrichment = NULL)
 {
