@@ -1,7 +1,7 @@
 Package: TuBA
 Type: Package
 Title: Performs Biclustering On Large Gene Expression Data Sets
-Version: 0.1.1
+Version: 0.2.1
 Author: Amartya Singh
 Maintainer: The package maintainer <amartya.singh@rutgers.edu>
 Description: Contains a set of functions to generate and analyze graphs in which nodes are genes and edges are the samples shared in the percentile sets of each pair of genes. The biclusters correspond to tightly knit communities in these graphs.
@@ -10,8 +10,10 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
+biocViews:
 Imports: 
     data.table,
     ggplot2,
     ggnetwork,
-    network
+    network,
+    Matrix

@@ -4,10 +4,10 @@
 \alias{GenePairs}
 \title{GenePairs}
 \usage{
-GenePairs(File, PercSetSize, JcdInd, highORlow, SampleFilter = NULL)
+GenePairs(X, PercSetSize, JcdInd, highORlow, SampleFilter = NULL)
 }
 \arguments{
-\item{File}{A character variable. Specifies the name of the .csv or .txt file that contains the normalized counts.}
+\item{X}{A character variable or a matrix. Specifies the name of the .csv or .txt file that contains the normalized counts, or a matrix with Gene IDs as rownames and Sample IDs as colnames.}
 
 \item{PercSetSize}{A numeric variable. Specifies the percentage of samples that should be in the percentile sets (strictly greater than 0 and less than 40).}
 
@@ -27,8 +27,8 @@ This function finds gene-pairs that share more than a specified proportion of sa
 \examples{
 \dontrun{
 # For high expression
-GenePairs(File = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "h")
+GenePairs(X = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "h")
 # For low expression
-GenePairs(File = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "l")
+GenePairs(X = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "l")
 }
 }

@@ -2,7 +2,7 @@
 
 export(BiclusterGenesGraph)
 export(Biclustering)
-export(DataCleaning)
+export(DataPrep)
 export(GenePairs)
 import(ggnetwork)
 import(ggplot2)
