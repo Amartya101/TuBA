@@ -4,7 +4,7 @@ New R package of TuBA - Analyzes large graphs to identify biclusters much faster
 
 ## Getting Started
 
-You will need an R version 3.4.0 or more recent in order to use the package
+You will need an R version 3.4.0 or more recent in order to use the package.
 
 ### Prerequisites
 
