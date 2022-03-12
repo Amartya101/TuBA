@@ -197,7 +197,7 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
 
       Samples.In.PercSet <- Samples.In.Order[Start.Index:ncol(Expr.Mat)]
 
-      Samples.With.Zeros <- which(Expr.Mat[i,Samples.In.PercSet] == 0)
+      Samples.With.Zeros <- Samples.In.PercSet[which(Expr.Mat[i,Samples.In.PercSet] == 0)]
 
       if (length(Samples.With.Zeros) != 0){
         Samples.In.PercSet <- Samples.In.PercSet[!Samples.In.PercSet %in% Samples.With.Zeros]
