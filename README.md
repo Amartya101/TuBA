@@ -61,9 +61,9 @@ The *GenePairs* function generates 3 output files. The first file contains all t
 Examples of valid function calls are provided below (here we directly used "*RPGenes.csv*", since it was already clean):
 ```
 # For high expression
-GenePairs(File = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "h")
+GenePairs(X = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "h")
 # For low expression
-GenePairs(File = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "l")
+GenePairs(X = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "l")
 ```
 The first one will generate the following 3 files: "*RPGenes_H0.05_JcdInd0.2_GenePairs.csv*", "*RPGenes_H0.05_JcdInd0.2_GenesSamplesBinaryMatrix.csv*", and "*RPGenes_H0.05_JcdInd0.2_GeneNames.csv*". The annotations in the middle of their names indicate the following: *H0.05* indicates that the gene-pairs were obtained for high expression ("H") with the percentile set size of 5% (0.05); *JcdInd0.2* indicates that a Jaccard index threshold of 0.2 was chosen to shortlist the gene-pairs.
 
