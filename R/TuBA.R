@@ -163,7 +163,7 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
   }
 
   if (is.null(SampleFilter)){
-    SampleFilter = F
+    SampleFilter = T
   }
 
   if (is.logical(SampleFilter) == F){
