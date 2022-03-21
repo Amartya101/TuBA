@@ -4,7 +4,7 @@
 \alias{GenePairs}
 \title{GenePairs}
 \usage{
-GenePairs(X, PercSetSize, JcdInd, highORlow, SampleFilter = NULL)
+GenePairs(X, PercSetSize, JcdInd, highORlow, SampleFilter = T)
 }
 \arguments{
 \item{X}{A character variable or a matrix. Specifies the name of the .csv or .txt file that contains the normalized counts, or a matrix with Gene IDs as rownames and Sample IDs as colnames.}

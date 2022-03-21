@@ -131,12 +131,13 @@ DataPrep <- function(X,normalize = T)
 #' # For low expression
 #' GenePairs(X = "RPGenes.csv",PercSetSize = 5,JcdInd = 0.2,highORlow = "l")
 #' }
-GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
+GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = T)
 {
   if (is.character(X)){
 
     df <- data.table::fread(X)
-    Gene.Names <- df[,1]
+    colnames(df) <- c("Gene.ID",colnames(df)[-1])
+    Gene.Names <- df$Gene.ID
     Expr.Mat <- as.matrix(df[,-1])
     Sample.IDs <- colnames(df)[-1]
 
@@ -272,7 +273,7 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
 
     SampleOverlaps.Matrix <- as.matrix(SampleOverlaps.Matrix)
 
-    SampleUnion <- ceiling(2*CutOffPerc*nrow(Binary.Mat.For.Genes.Outliers))
+    SampleUnion <- ceiling(2*CutOffPerc*ncol(Binary.Mat.For.Genes.Outliers))
     SampleUnion.Matrix <- SampleUnion - SampleOverlaps.Matrix
 
     Jaccard.Dist.Mat <- SampleOverlaps.Matrix/SampleUnion.Matrix
@@ -402,7 +403,7 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
 
     SampleOverlaps.Matrix <- as.matrix(SampleOverlaps.Matrix)
 
-    SampleUnion <- ceiling(2*CutOffPerc*nrow(Binary.Mat.For.Genes.Outliers))
+    SampleUnion <- ceiling(2*CutOffPerc*ncol(Binary.Mat.For.Genes.Outliers))
     SampleUnion.Matrix <- SampleUnion - SampleOverlaps.Matrix
 
     Jaccard.Dist.Mat <- SampleOverlaps.Matrix/SampleUnion.Matrix
