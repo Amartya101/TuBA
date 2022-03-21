@@ -121,7 +121,7 @@ DataPrep <- function(X,normalize = T)
 #' @param PercSetSize A numeric variable. Specifies the percentage of samples that should be in the percentile sets (strictly greater than 0 and less than 40).
 #' @param JcdInd A numeric variable. Specifies the minimum Jaccard Index for the overlap between the percentile sets of a given gene-pair.
 #' @param highORlow A character variable. Specifies whether the percentile sets correspond to the highest expression samples ("h") or the lowest expression samples ("l").
-#' @param SampleFilter A logical variable. If TRUE, filters out samples over-represented in percentile sets. Default is FALSE.
+#' @param SampleFilter A logical variable. If TRUE, filters out samples over-represented in percentile sets. Default is TRUE.
 #' @return A data frame containing the gene-pairs whose Jaccard indices are greater than the specified threshold (JcdInd). Instead of gene symbols their serial numbers in the input gene expression file are used in order to save space. In addition, this function generates 3 .csv files in the working directory - one contains the gene-pairs and their Jaccard indices, the second contains the binary matrix (genes along rows, samples along columns) in which the presence of a sample in the percentile set of each gene is indicated by a 1. These 2 files are needed as inputs for the \link[TuBA]{Biclustering} function.
 #' The third .csv file contains the IDs or names of the genes corresponding to the numbered indices used in the gene-pairs file.
 #' @examples
@@ -162,13 +162,13 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
     stop("JcdInd has to be a numeric value strictly between 0 and 1.")
   }
 
-  if (is.null(SampleFilter)){
-    SampleFilter = T
+  if (is.logical(SampleFilter) == F){
+    message("SampleFilter is a logical variable and can only take T or F as valid inputs. Setting it to T by default")
+    SampleFilter <- T
+  } else if (is.null(SampleFilter)){
+    SampleFilter <- T
   }
 
-  if (is.logical(SampleFilter) == F){
-    stop("SampleFilter is a logical variable and can only take T or F as valid inputs.")
-  }
 
   if (highORlow == "h" | highORlow == "H" | highORlow == "high" | highORlow == "High" | highORlow == "Hi" | highORlow == "HI" | highORlow == "hi" | highORlow == "HIGH"){
 
@@ -265,12 +265,10 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
 
     rm(Genes.Samples.Binary.df)
 
-    Binary.Mat.For.Genes.Outliers <- Matrix::t(Binary.Mat.For.Genes.Outliers)
-
     message("Finding gene-pairs with significant overlaps in their percentile sets...")
 
     #Outlier overlaps matrix
-    SampleOverlaps.Matrix <- Matrix::crossprod(Binary.Mat.For.Genes.Outliers,Binary.Mat.For.Genes.Outliers)
+    SampleOverlaps.Matrix <- Matrix::tcrossprod(Binary.Mat.For.Genes.Outliers,Binary.Mat.For.Genes.Outliers)
 
     SampleOverlaps.Matrix <- as.matrix(SampleOverlaps.Matrix)
 
@@ -399,10 +397,8 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = NULL)
 
     message("Finding gene-pairs with significant overlaps in their percentile sets...")
 
-    Binary.Mat.For.Genes.Outliers <- Matrix::t(Binary.Mat.For.Genes.Outliers)
-
     #Outlier overlaps matrix
-    SampleOverlaps.Matrix <- Matrix::crossprod(Binary.Mat.For.Genes.Outliers,Binary.Mat.For.Genes.Outliers)
+    SampleOverlaps.Matrix <- Matrix::tcrossprod(Binary.Mat.For.Genes.Outliers,Binary.Mat.For.Genes.Outliers)
 
     SampleOverlaps.Matrix <- as.matrix(SampleOverlaps.Matrix)
 
