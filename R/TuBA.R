@@ -985,61 +985,61 @@ BiclusterGenesGraph <- function(BiclusterGenes,GenePairs,GeneNames,BiclusterNos)
     x <- y <- xend <- yend <- vertex.names <- NULL
 
     if (length(BiclusterGenes) < 50){
-      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+      p <- ggplot2::ggplot(n, ggplot2::aes(x = x, y = y, xend = xend, yend = yend)) +
         ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
-        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
-        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
-        ggnetwork::geom_nodetext(aes(label = vertex.names),
+        ggnetwork::geom_nodes(ggplot2::aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(ggplot2::aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(ggplot2::aes(label = vertex.names),
                                  fontface = "bold") +
         ggnetwork::theme_blank() +
         ggplot2::theme(legend.position = "none")
       ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 10,height = 10,units = "in")
     } else if (length(BiclusterGenes) >= 50 & length(BiclusterGenes) < 100){
-      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+      p <- ggplot2::ggplot(n, ggplot2::aes(x = x, y = y, xend = xend, yend = yend)) +
         ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
-        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
-        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
-        ggnetwork::geom_nodetext(aes(label = vertex.names),
+        ggnetwork::geom_nodes(ggplot2::aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(ggplot2::aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(ggplot2::aes(label = vertex.names),
                                  fontface = "bold") +
         ggnetwork::theme_blank() +
         ggplot2::theme(legend.position = "none")
       ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 12,height = 12,units = "in")
     } else if (length(BiclusterGenes) >= 100 & length(BiclusterGenes) < 150){
-      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+      p <- ggplot2::ggplot(n, ggplot2::aes(x = x, y = y, xend = xend, yend = yend)) +
         ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
-        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
-        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
-        ggnetwork::geom_nodetext(aes(label = vertex.names),
+        ggnetwork::geom_nodes(ggplot2::aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(ggplot2::aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(ggplot2::aes(label = vertex.names),
                                  fontface = "bold") +
         ggnetwork::theme_blank() +
         ggplot2::theme(legend.position = "none")
       ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 14,height = 14,units = "in")
     } else if (length(BiclusterGenes) >= 150 & length(BiclusterGenes) < 200){
-      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+      p <- ggplot2::ggplot(n, ggplot2::aes(x = x, y = y, xend = xend, yend = yend)) +
         ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
-        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
-        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
-        ggnetwork::geom_nodetext(aes(label = vertex.names),
+        ggnetwork::geom_nodes(ggplot2::aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(ggplot2::aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(ggplot2::aes(label = vertex.names),
                                  fontface = "bold") +
         ggnetwork::theme_blank() +
         ggplot2::theme(legend.position = "none")
       ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 16,height = 16,units = "in")
     } else if (length(BiclusterGenes) >= 200 & length(BiclusterGenes) < 250){
-      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+      p <- ggplot2::ggplot(n, ggplot2::aes(x = x, y = y, xend = xend, yend = yend)) +
         ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
-        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
-        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
-        ggnetwork::geom_nodetext(aes(label = vertex.names),
+        ggnetwork::geom_nodes(ggplot2::aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(ggplot2::aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(ggplot2::aes(label = vertex.names),
                                  fontface = "bold") +
         ggnetwork::theme_blank() +
         ggplot2::theme(legend.position = "none")
       ggplot2::ggsave(filename = FileName,p,device = "pdf",width = 18,height = 18,units = "in")
     } else if(length(BiclusterGenes) >= 250){
-      p <- ggplot2::ggplot(n, aes(x = x, y = y, xend = xend, yend = yend)) +
+      p <- ggplot2::ggplot(n, ggplot2::aes(x = x, y = y, xend = xend, yend = yend)) +
         ggnetwork::geom_edges(color = "grey",curvature = 0.1) +
-        ggnetwork::geom_nodes(aes(color = "peachpuff"),size = 15,alpha = 0.5) +
-        ggnetwork::geom_nodes(aes(x, y, color = "peachpuff"), size = 10) +
-        ggnetwork::geom_nodetext(aes(label = vertex.names),
+        ggnetwork::geom_nodes(ggplot2::aes(color = "peachpuff"),size = 15,alpha = 0.5) +
+        ggnetwork::geom_nodes(ggplot2::aes(x, y, color = "peachpuff"), size = 10) +
+        ggnetwork::geom_nodetext(ggplot2::aes(label = vertex.names),
                                  fontface = "bold") +
         ggnetwork::theme_blank() +
         ggplot2::theme(legend.position = "none")
