@@ -757,7 +757,7 @@ Biclustering <- function(GenePairs,BinaryMatrix,MinGenes = NULL,MinSamples = NUL
   Matrix.For.Variables.Outliers <- as.matrix(Matrix.For.Variables.Outliers)
 
   Nodes.In.Final.Biclusters <- vector(mode = "list",length = length(Nodes.In.Bicluster))
-  N.PercentileSet <- sum(Matrix.For.Variables.Outliers[1,])
+  N.PercentileSet <- max(rowSums(Matrix.For.Variables.Outliers))
   for (i in 1:length(Nodes.In.Bicluster))
   {
     Temp.Nodes.In.Bicluster <- Nodes.In.Bicluster[[i]]
