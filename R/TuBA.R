@@ -273,7 +273,7 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = T)
 
     SampleOverlaps.Matrix <- as.matrix(SampleOverlaps.Matrix)
 
-    SampleUnion <- ceiling(2*CutOffPerc*ncol(Binary.Mat.For.Genes.Outliers))
+    SampleUnion <- ceiling(2*CutOffPerc*ncol(Expr.Mat))
     SampleUnion.Matrix <- SampleUnion - SampleOverlaps.Matrix
 
     Jaccard.Dist.Mat <- SampleOverlaps.Matrix/SampleUnion.Matrix
@@ -403,7 +403,7 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = T)
 
     SampleOverlaps.Matrix <- as.matrix(SampleOverlaps.Matrix)
 
-    SampleUnion <- ceiling(2*CutOffPerc*ncol(Binary.Mat.For.Genes.Outliers))
+    SampleUnion <- ceiling(2*CutOffPerc*ncol(Expr.Mat))
     SampleUnion.Matrix <- SampleUnion - SampleOverlaps.Matrix
 
     Jaccard.Dist.Mat <- SampleOverlaps.Matrix/SampleUnion.Matrix
