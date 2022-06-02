@@ -32,7 +32,7 @@ DataPrep <- function(X,normalize = T)
   if (is.character(X)){
 
     df <- data.table::fread(X)
-    Gene.IDs <- df[,1]
+    Gene.IDs <- as.character(df[,1])
     Expr.Mat <- as.matrix(df[,-1])
     Sample.IDs <- colnames(df)[-1]
 
