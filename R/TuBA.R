@@ -213,6 +213,7 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = T)
     }
 
     Binary.Mat.For.Genes.Outliers <- Matrix::sparseMatrix(i = unlist(Row.Index.List),j = unlist(List.Samples.In.PercSet),x = unlist(Values.List))
+    Sample.IDs <- Sample.IDs[1:dim(Binary.Mat.For.Genes.Outliers)[2]]
 
     #Find the frequencies for the samples
     Sample.Frequencies <- Matrix::colSums(Binary.Mat.For.Genes.Outliers)
@@ -343,7 +344,8 @@ GenePairs <- function(X,PercSetSize,JcdInd,highORlow,SampleFilter = T)
     }
 
     Binary.Mat.For.Genes.Outliers <- Matrix::sparseMatrix(i = unlist(Row.Index.List),j = unlist(List.Samples.In.PercSet),x = unlist(Values.List))
-
+    Sample.IDs <- Sample.IDs[1:dim(Binary.Mat.For.Genes.Outliers)[2]]
+                                  
     #Find the frequencies for the samples
     Sample.Frequencies <- Matrix::colSums(Binary.Mat.For.Genes.Outliers)
 
